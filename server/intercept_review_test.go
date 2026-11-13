@@ -9,6 +9,7 @@ import (
 
 	"github.com/Autumn-27/artex/db"
 	"github.com/Autumn-27/artex/intercept"
+	"github.com/Autumn-27/artex/locale"
 	"github.com/Autumn-27/norma/llm"
 )
 
@@ -39,7 +40,7 @@ func TestReviewCompletionSendsCurrentCallWithoutHistory(t *testing.T) {
 		t.Fatal(err)
 	}
 	p := &reviewCaptureProvider{}
-	prompt := intercept.EffectiveJudgePrompt(intercept.DefaultJudgePrompt)
+	prompt := intercept.EffectiveJudgePrompt(intercept.DefaultJudgePrompt, locale.En)
 	reply, err := reviewCompletion(ctx, p, prompt, input)
 	if err != nil || intercept.ParseVerdict(reply).Action != "ask" {
 		t.Fatalf("%s %v", reply, err)

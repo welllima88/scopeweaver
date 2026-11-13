@@ -16,6 +16,7 @@ import (
 	"github.com/Autumn-27/artex/agent"
 	"github.com/Autumn-27/artex/db"
 	"github.com/Autumn-27/artex/internal/dbtest"
+	"github.com/Autumn-27/artex/locale"
 	"github.com/Autumn-27/norma/llm"
 )
 
@@ -209,6 +210,11 @@ func TestChatMentionWorkerReceivesServerDetails(t *testing.T) {
 }
 
 func TestChatMentionBoundedJSON(t *testing.T) {
+	// Pin the server default to English so the generated truncation markers
+	// ("truncated") stay English regardless of the app default (now pt).
+	old := locale.ServerDefault()
+	locale.SetServerDefault(locale.En)
+	defer locale.SetServerDefault(old)
 	long := strings.Repeat("中文", 10000)
 	items := make([]any, 102)
 	for i := range items {

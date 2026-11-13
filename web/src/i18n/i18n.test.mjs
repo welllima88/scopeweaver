@@ -44,9 +44,9 @@ function reset() {
   __resetLocaleForTests();
 }
 
-test("English is the default; unsupported and malformed preferences safely fall back", () => {
+test("Portuguese (Brazil) is the default; unsupported and malformed preferences safely fall back", () => {
   reset();
-  assert.equal(getLocale(), "en");
+  assert.equal(getLocale(), "pt");
   assert.equal(normalizeLocale("ko-KR"), "ko");
   assert.equal(normalizeLocale("zh-CN"), "zh-Hans");
   assert.equal(readCookieLocale("scopeweaver_locale=%E0%A4%A"), null);
@@ -56,15 +56,15 @@ test("English is the default; unsupported and malformed preferences safely fall 
   reset();
   browser("unsupported", "scopeweaver_locale=%bad");
   initializeLocale();
-  assert.equal(getLocale(), "en");
+  assert.equal(getLocale(), "pt");
   reset();
 });
 
-test("persisted Korean starts with the English hydration snapshot and initializes afterward", () => {
+test("persisted Korean starts with the default hydration snapshot and initializes afterward", () => {
   reset();
   browser("ko");
-  assert.equal(getLocale(), "en");
-  assert.equal(translate("common.save"), "Save");
+  assert.equal(getLocale(), "pt");
+  assert.equal(translate("common.save"), "Salvar");
   assert.equal(localeHeaders()["Accept-Language"], "ko", "first API call honors persisted preference before effects");
   let calls = 0;
   const unsubscribe = subscribeLocale(() => calls++);
@@ -147,6 +147,7 @@ test("output-limit help states what 0 actually sends on each call path", () => {
     "zh-Hant": [/代理|Agent|智慧體|智能體/i],
     ja: [/エージェント|agent/i],
     es: [/agent/i],
+    pt: [/agent/i],
   };
   for (const locale of LOCALES) {
     const key = "interface.m1411";
@@ -350,10 +351,10 @@ test("rich settings paragraphs preserve emphasis and translated theme announceme
   assert.equal(translateIn("ko", "settings.pagination", { from: 1, to: 4, total: 4 }), "1–4 / 총 4건");
 });
 
-test("Chinese preference preserves English hydration, persistence and cookie privacy fallback", () => {
+test("Chinese preference preserves default hydration, persistence and cookie privacy fallback", () => {
   reset();
   browser("zh-CN");
-  assert.equal(getLocale(), "en");
+  assert.equal(getLocale(), "pt");
   assert.equal(localeHeaders()["Accept-Language"], "zh-Hans");
   assert.equal(localizedUrl("/api/events?cursor=7#tail"), "/api/events?cursor=7&lang=zh-Hans#tail");
   initializeLocale();
@@ -445,7 +446,7 @@ test("Chinese Intl and date-fns formatters map calendars, ranges and explicit ca
   assert.equal(formatRangeDate("zh-Hans", date), "2 10月 2026");
   assert.equal(calendarLocale("zh-Hans").code, "zh-CN");
   assert.equal(calendarLocale("zh-Hans", DATE_FNS_LOCALES.en), DATE_FNS_LOCALES.en);
-  const codes = { en: "en-US", ko: "ko", "zh-Hans": "zh-CN", "zh-Hant": "zh-TW", ja: "ja", es: "es" };
+  const codes = { en: "en-US", ko: "ko", "zh-Hans": "zh-CN", "zh-Hant": "zh-TW", ja: "ja", es: "es", pt: "pt-BR" };
   for (const locale of LOCALES) {
     const fmt = createFormatters(locale);
     assert.equal(fmt.date(date), date.toLocaleDateString(intlLocale(locale)), locale);
@@ -456,14 +457,14 @@ test("Chinese Intl and date-fns formatters map calendars, ranges and explicit ca
   }
 });
 
-test("all six languages restore preferences and carry the first API/SSE locale without altering content", async () => {
-  assert.deepEqual(LOCALES, ["en", "ko", "zh-Hans", "zh-Hant", "ja", "es"]);
+test("all seven languages restore preferences and carry the first API/SSE locale without altering content", async () => {
+  assert.deepEqual(LOCALES, ["en", "ko", "zh-Hans", "zh-Hant", "ja", "es", "pt"]);
   const original = globalThis.fetch;
   try {
     for (const locale of LOCALES) {
       reset();
       browser(locale);
-      assert.equal(getLocale(), "en", `${locale}: English hydration`);
+      assert.equal(getLocale(), "pt", `${locale}: default hydration`);
       assert.equal(localeHeaders()["Accept-Language"], locale, `${locale}: first API`);
       assert.equal(localizedUrl("/api/events?cursor=7#tail"), `/api/events?cursor=7&lang=${locale}#tail`);
       initializeLocale();

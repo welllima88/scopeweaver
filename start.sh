@@ -13,6 +13,7 @@ normalize_language() (
     ''|*-|*--*|*' '*|*';'*) printf en; return ;;
     ja|ja-*) printf ja; return ;;
     es|es-*) printf es; return ;;
+    pt|pt-*) printf pt; return ;;
     zh|zh-cn|zh-sg) printf zh-Hans; return ;;
     zh-tw|zh-hk|zh-mo) printf zh-Hant; return ;;
     zh-*)

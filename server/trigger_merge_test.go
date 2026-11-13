@@ -18,6 +18,7 @@ func sameTaskFires(n int) []triggeredRun {
 		items[i] = triggeredRun{
 			agentKey: "tec_benchmark", taskID: 72, taskDesc: "f2-05 逆向", taskGoal: longGoal,
 			message: "【本次由工具调用触发】\n工具: submit_flag\n入参: {...}\n返回: {correct:false}", mergeable: true,
+			language: locale.En, // pin the merge tests to English regardless of the app default
 		}
 	}
 	return items
@@ -44,7 +45,7 @@ func TestMergeAllRunsGroupsInterleavedTasks(t *testing.T) {
 	// Fires from two tasks arriving interleaved (A,B,A,B) must still carry each
 	// task's context exactly once — grouping, not per-event repetition.
 	mk := func(id int64, goal string) triggeredRun {
-		return triggeredRun{agentKey: "a", taskID: id, taskDesc: "d", taskGoal: goal, message: "body", mergeable: true}
+		return triggeredRun{agentKey: "a", taskID: id, taskDesc: "d", taskGoal: goal, message: "body", mergeable: true, language: locale.En}
 	}
 	out := mergeAllRuns([]triggeredRun{mk(1, "GOAL_A"), mk(2, "GOAL_B"), mk(1, "GOAL_A"), mk(2, "GOAL_B")})
 	if got := strings.Count(out.message, "GOAL_A"); got != 1 {

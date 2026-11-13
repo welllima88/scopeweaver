@@ -4,6 +4,8 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/Autumn-27/artex/locale"
 )
 
 // TestChatNowVarRenders verifies the universal {{.Now}} runtime variable: a custom
@@ -61,7 +63,8 @@ func TestChatUnknownVarFallsBack(t *testing.T) {
 	if strings.Contains(out, "引用了不存在的变量") {
 		t.Fatalf("broken template should have fallen back, got custom body: %q", out)
 	}
-	if !strings.Contains(out, DefaultAssistantPrompt) {
-		t.Fatalf("expected fallback to DefaultAssistantPrompt, got: %q", out)
+	// The fallback uses the default language (currently pt), not the English constant.
+	if !strings.Contains(out, locale.Text(locale.Default, DefaultAssistantPrompt)) {
+		t.Fatalf("expected fallback to the default-language DefaultAssistantPrompt, got: %q", out)
 	}
 }

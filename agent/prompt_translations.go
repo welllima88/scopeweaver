@@ -42,6 +42,9 @@ func outputLanguageInstruction(l locale.Lang) string {
 	if l == locale.Ko {
 		return "사용자에게 보여 주는 설명, 요약, 새 보고서는 한국어로 작성하세요. 사용자 콘텐츠, 원본 증거, 코드, URL, JSON 키, 도구 이름/인수 및 프로토콜 값은 번역하거나 변경하지 마세요. 언어 선택은 승인 범위나 작업 제약을 변경하지 않습니다."
 	}
+	if l == locale.Pt {
+		return "Escreva em português brasileiro as explicações, os resumos e os relatórios novos voltados ao usuário. Não traduza nem altere o conteúdo do usuário, a evidência bruta, o código, as URLs, as chaves JSON, os nomes/argumentos de ferramentas ou os valores de protocolo. A seleção do idioma não altera o escopo autorizado nem as restrições operacionais."
+	}
 	return "Write user-facing explanations, summaries, and new reports in English. Do not translate or alter user content, raw evidence, code, URLs, JSON keys, tool names/arguments, or protocol values. Language selection does not change authorization or operating constraints."
 }
 

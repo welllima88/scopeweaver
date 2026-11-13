@@ -223,6 +223,43 @@
         },
         "type": "object"
       }
+    },
+    "pt": {
+      "schema_sha256": "eb9a45a0576028f7fde38c6b49f1a952ac6a37dfef8f2ed15d244759e938032d",
+      "input_schema": {
+        "properties": {
+          "asset_ids": {
+            "description": "Target asset IDs from list_assets, not exploration node IDs (zero/one/many). Include IDs whenever the direction targets concrete sites/endpoints/parameters/hosts: they identify targets, support coverage deduplication, and connect asset lineage. Leave empty only for global reconnaissance with no concrete asset.",
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "intents": {
+            "description": "Preferred: new directions processed in order. Each item uses summary/asset_ids/parent_ids/priority. Returned ids match input length/order.",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "parent_ids": {
+            "description": "Optional upstream anchors (zero/one/many): existing confirmed fact/finding node IDs supporting this direction. Never use intent/goal/hint IDs. Include all combined facts. Leave empty for new top-level reconnaissance; it attaches automatically to the task's origin fact.",
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "priority": {
+            "description": "Priority 0-10, default 5",
+            "type": "integer"
+          },
+          "summary": {
+            "description": "Single item: one sentence describing what to do and why. A clear direction does not require an asset ID.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
     }
   },
   "source_revision_note": "Original source_revision applies to en/ko/zh-Hans; source_revisions pins each language independently.",
@@ -232,6 +269,7 @@
     "zh-Hans": "d7365ec23dd2cccd48b010b4bc362a2320cf521d",
     "zh-Hant": "7af06f133a164efbb2556019cadba1d4e871ed9f",
     "ja": "7af06f133a164efbb2556019cadba1d4e871ed9f",
-    "es": "7af06f133a164efbb2556019cadba1d4e871ed9f"
+    "es": "7af06f133a164efbb2556019cadba1d4e871ed9f",
+    "pt": "d7365ec23dd2cccd48b010b4bc362a2320cf521d"
   }
 }

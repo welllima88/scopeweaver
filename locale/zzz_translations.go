@@ -5,13 +5,13 @@ import (
 	"encoding/json"
 )
 
-//go:embed zh-Hans.json zh-Hant.json ja.json es.json
+//go:embed zh-Hans.json zh-Hant.json ja.json es.json pt.json
 var translatedCatalogs embed.FS
 
 // Additional language catalogs are registered after the base EN/KO registrations. Adding
 // a translated value never replaces the authoritative English or Korean text.
 func init() {
-	for _, lang := range []Lang{ZhHans, ZhHant, Ja, Es} {
+	for _, lang := range []Lang{ZhHans, ZhHant, Ja, Es, Pt} {
 		raw, err := translatedCatalogs.ReadFile(string(lang) + ".json")
 		if err != nil {
 			panic(err)

@@ -1,5 +1,5 @@
 {
-  "default": "en",
+  "default": "pt",
   "locales": [
     {
       "id": "en",
@@ -60,6 +60,17 @@
         "es-ES",
         "es-MX",
         "es-419"
+      ]
+    },
+    {
+      "id": "pt",
+      "nativeName": "Português (Brasil)",
+      "intlLocale": "pt-BR",
+      "aliases": [
+        "pt",
+        "pt-BR",
+        "pt_BR",
+        "pt-PT"
       ]
     }
   ]

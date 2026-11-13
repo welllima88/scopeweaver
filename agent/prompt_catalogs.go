@@ -6,7 +6,7 @@ import (
 	"github.com/Autumn-27/artex/locale"
 )
 
-//go:embed prompt_zh-Hans.json prompt_zh-Hant.json prompt_ja.json prompt_es.json
+//go:embed prompt_zh-Hans.json prompt_zh-Hant.json prompt_ja.json prompt_es.json prompt_pt.json
 var translatedPromptFiles embed.FS
 
 func init() {
@@ -28,7 +28,7 @@ func init() {
 		"workerTaskTimeoutDefault":  workerTaskTimeoutDefault,
 		"plannerTaskTimeoutDefault": plannerTaskTimeoutDefault,
 	}
-	for _, lang := range []locale.Lang{locale.ZhHans, locale.ZhHant, locale.Ja, locale.Es} {
+	for _, lang := range []locale.Lang{locale.ZhHans, locale.ZhHant, locale.Ja, locale.Es, locale.Pt} {
 		raw, err := translatedPromptFiles.ReadFile("prompt_" + string(lang) + ".json")
 		if err != nil {
 			panic(err)

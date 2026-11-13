@@ -29,12 +29,13 @@ Modification date: **2026-10-02**. See [provenance and changes](docs/PROVENANCE.
 
 ## Language
 
-English is the default. Select English, Korean, Simplified Chinese (`zh-Hans`), Traditional Chinese
-(`zh-Hant`), Japanese (`ja`) or Spanish (`es`) in the interface.
+Brazilian Portuguese (`pt`) is the default. Select English, Korean, Simplified Chinese (`zh-Hans`),
+Traditional Chinese (`zh-Hant`), Japanese (`ja`), Spanish (`es`) or Brazilian Portuguese (`pt`)
+in the interface.
 Bare `zh`, `zh-CN` and `zh-SG` resolve to Simplified Chinese; explicit Hans tags keep their script even
 with a Traditional region. `zh-TW`, `zh-HK` and `zh-MO` select Traditional Chinese;
-explicit Hant tags keep their script even with a Simplified region. Japanese and Spanish regional
-tags resolve to `ja` and `es`. Unsupported languages fall through to the next preference. See the
+explicit Hant tags keep their script even with a Simplified region. Japanese, Spanish, and Portuguese regional
+tags resolve to `ja`, `es`, and `pt`. Unsupported languages fall through to the next preference. See the
 [contributor locale guide](web/src/i18n/README.md). The server's durable default is
 `language` in system settings; `SCOPEWEAVER_LANGUAGE` (or `ARTEX_LANGUAGE`) supplies the environment
 fallback. Operating-system `LANG` does not select the application language.
@@ -693,7 +694,7 @@ ScopeWeaver is derived from [Autumn-27/ARTEX](https://github.com/Autumn-27/ARTEX
   Simplified Chinese, Traditional Chinese, Japanese and Spanish counterparts linked from each guide.
 - **Script language**: setup/build/start/update/reset-password/dev prompts default to English;
   `SCOPEWEAVER_LANGUAGE` (`ARTEX_LANGUAGE` also works) selects `en`, `ko`, `zh-Hans`, `zh-Hant`,
-  `ja` or `es`. No network translation is used.
+  `ja`, `es` or `pt`. No network translation is used.
 - **Distribution**: the output binary is `scopeweaver`, release archives are
   `scopeweaver-<version>-<os>-<arch>.zip`, the repository is
   `https://github.com/cskwork/scopeweaver`, and container images target this repo's GHCR. Upstream's

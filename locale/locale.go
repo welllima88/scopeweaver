@@ -33,10 +33,12 @@ const (
 	Ja Lang = "ja"
 	// Es is Spanish.
 	Es Lang = "es"
+	// Pt is Brazilian Portuguese.
+	Pt Lang = "pt"
 )
 
 // Default is the fallback language when nothing else is negotiated.
-const Default = En
+const Default = Pt
 
 // CookieName is the browser cookie the UI sets to persist the chosen locale.
 const CookieName = "scopeweaver_locale"

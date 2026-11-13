@@ -7,11 +7,11 @@ import (
 	"github.com/Autumn-27/artex/locale"
 )
 
-//go:embed reporter_zh-Hant.json reporter_ja.json reporter_es.json
+//go:embed reporter_zh-Hant.json reporter_ja.json reporter_es.json reporter_pt.json
 var translatedReporterFiles embed.FS
 
 func init() {
-	for _, lang := range []locale.Lang{locale.ZhHant, locale.Ja, locale.Es} {
+	for _, lang := range []locale.Lang{locale.ZhHant, locale.Ja, locale.Es, locale.Pt} {
 		raw, err := translatedReporterFiles.ReadFile("reporter_" + string(lang) + ".json")
 		if err != nil {
 			panic(err)

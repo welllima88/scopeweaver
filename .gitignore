@@ -64,3 +64,5 @@ Thumbs.db
 /scopeweaver.old
 /scopeweaver.failed
 /scopeweaver.upgrade.json
+scopeweaver.log
+/tools/dumpen/

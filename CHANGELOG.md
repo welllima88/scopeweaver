@@ -4,6 +4,20 @@ This is the translated upstream ARTEX history from baseline `160fe13`, preservin
 
 ## [Unreleased]
 
+### Brazilian Portuguese (pt-BR) language
+
+#### Added
+- Added Brazilian Portuguese (`pt`) as a fully supported language across the UI and backend. UI-chrome strings, agent prompts (planner, worker, main agent, auto, pentest, reporter, retester, chat assistant, and the wrap-up / timeout defaults), the judge/interception prompts and the backend message catalog now have pt-BR translations.
+- Added the `pt` locale definition and made Brazilian Portuguese the **initial default language** (previously English). The interface, startup scripts and built-in agent guidance now start in pt-BR by default; users can still choose English, Korean, Simplified/Traditional Chinese, Japanese or Spanish.
+- Wired the new default consistently across `locale/definitions.json`, `locale/locale.go`, the `web/src/i18n` catalog, `agent/prompt_pt.json`, `intercept/prompt_pt.json` and `server/reporter_pt.json`.
+
+#### Changed
+- The application's initial language is now `pt` instead of `en`. The locale default constant and the definitions agree on `pt`; tests that need deterministic behavior are pinned to English so they stay stable regardless of the default.
+
+#### Notes
+- All Go modules are vendored (`go mod vendor`) so this fork keeps building even if the upstream Autumn-27/ARTEX repository is taken offline.
+- The LLM is configured for the Plinn provider (OpenAI-compatible endpoint, model `plinn`). Only the provider, endpoint and model are documented here; the API key stays in the local, gitignored `config.json` and is not published.
+
 ### Windows PostgreSQL setup (#79)
 
 #### Fixed

@@ -167,6 +167,26 @@
     {
       "input": "de-DE",
       "expected": ""
+    },
+    {
+      "input": "pt",
+      "expected": "pt"
+    },
+    {
+      "input": "PT",
+      "expected": "pt"
+    },
+    {
+      "input": "pt-BR",
+      "expected": "pt"
+    },
+    {
+      "input": "pt_BR",
+      "expected": "pt"
+    },
+    {
+      "input": "pt-PT",
+      "expected": "pt"
     }
   ]
 }

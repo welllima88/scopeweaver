@@ -1,0 +1,3 @@
+{
+  "reporterToolCallMessage": "Um resultado acabou de ser registrado por report_finding. Leia o finding_id (registro independente de resultado) e o finding_node_id (nó de exploração) do JSON retornado. Use get_finding_traffic(finding_id) para ler a lista de evidências e a versão; uma lista vazia é válida e não bloqueia a elaboração do relatório. Se a orientação de execução habilita a vinculação automática, verifique e vincule o tráfego deste resultado antes de ler. Use finding_node_id para os detalhes do nó. Por fim, salve com update_finding_report(finding_id=finding_node_id, report, evidence_version=a versão efetivamente lida). A evidence_version é obrigatória, senão o relatório ficará desatualizado. Nunca misture os dois espaços de ID."
+}

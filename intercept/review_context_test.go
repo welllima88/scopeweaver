@@ -8,6 +8,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/Autumn-27/artex/db"
+	"github.com/Autumn-27/artex/locale"
 )
 
 func TestReviewInputIgnoresAuditHistoryAndPreservesCurrentCall(t *testing.T) {
@@ -131,8 +132,8 @@ func TestReviewInputAuditRetention(t *testing.T) {
 
 func TestEffectiveJudgePromptPreservesCustomPolicy(t *testing.T) {
 	custom := "自定义策略：禁止对真实用户发送请求。"
-	prompt := EffectiveJudgePrompt(custom)
-	if !strings.HasPrefix(prompt, custom) || strings.Count(EffectiveJudgePrompt(prompt), JudgeContextBoundary) != 1 || strings.Count(EffectiveJudgePrompt(prompt), JudgeOutputContract) != 1 {
+	prompt := EffectiveJudgePrompt(custom, locale.En)
+	if !strings.HasPrefix(prompt, custom) || strings.Count(EffectiveJudgePrompt(prompt, locale.En), JudgeContextBoundary) != 1 || strings.Count(EffectiveJudgePrompt(prompt, locale.En), JudgeOutputContract) != 1 {
 		t.Fatal("custom prompt changed or input boundary duplicated")
 	}
 }

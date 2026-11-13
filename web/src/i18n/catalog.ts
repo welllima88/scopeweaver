@@ -10,6 +10,7 @@ import * as english from "./messages/english.ts";
 import * as es from "./messages/es.ts";
 import * as interfaceMessages from "./messages/interface.ts";
 import * as ja from "./messages/ja.ts";
+import * as pt from "./messages/pt.ts";
 import * as providers from "./messages/providers.ts";
 import * as settings from "./messages/settings.ts";
 import * as zhHans from "./messages/zh-hans.ts";
@@ -47,6 +48,7 @@ const resources = {
   "zh-Hant": zhHant,
   ja,
   es,
+  pt,
 } satisfies Record<Locale, NamespaceCatalogs>;
 
 export const catalogLocales = Object.keys(resources);
